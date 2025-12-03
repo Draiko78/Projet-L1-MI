@@ -2,4 +2,5 @@ import pygame
 
 class Player:
     def __init__(self):
-        self.body = pygame.Rect((0,0),(40,80))
+        self.image = pygame.image.load("inserer le chemin pour l'image")
+        self.body = self.image.get_rect()
