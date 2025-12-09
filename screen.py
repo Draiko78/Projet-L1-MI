@@ -14,7 +14,7 @@ class Screen:
         while self.run:
                 
             self.screen.fill((0,0,0))
-            pygame.draw.rect(self.screen, (255,0,0), self.player.body)
+            self.screen.blit(self.player.image, self.player.body)
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT and self.player.body.left+40<1920:
