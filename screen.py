@@ -19,6 +19,7 @@ class Screen:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT and self.player.body.left+40<1920:
                         self.player.body.left+=40
+                        self.player.image=self.player.image_droite
                     if event.key == pygame.K_LEFT and self.player.body.left-40>=0: 
                         self.player.body.left-=40
                         self.player.image=self.player.image_gauche
@@ -30,7 +31,6 @@ class Screen:
                         self.player.image=self.player.image_face
                 if event.type == pygame.QUIT:
                     self.run = False
-                
                 
                     
                 pygame.display.update()
