@@ -21,10 +21,13 @@ class Screen:
                         self.player.body.left+=40
                     if event.key == pygame.K_LEFT and self.player.body.left-40>=0: 
                         self.player.body.left-=40
+                        self.player.image=self.player.image_gauche
                     if event.key == pygame.K_UP and self.player.body.top-40>=0:
                         self.player.body.top-=40
+                        self.player.image=self.player.image_dos
                     if event.key == pygame.K_DOWN and self.player.body.top+40<1080:
                         self.player.body.top+=40
+                        self.player.image=self.player.image_face
                 if event.type == pygame.QUIT:
                     self.run = False
                 
