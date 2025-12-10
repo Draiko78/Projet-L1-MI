@@ -21,7 +21,7 @@ Grove = GroveThumbJoystick
 def main():
     from grove.helper import SlotHelper
     sh = SlotHelper(SlotHelper.ADC)
-    pin = sh.argv2pin()
+    pin = 0 # A0
 
     sensor = GroveThumbJoystick(int(pin), int(pin + 1))
 
