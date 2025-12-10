@@ -49,7 +49,7 @@ Grove = GroveButton
 def main():
     from grove.helper import SlotHelper
     sh = SlotHelper(SlotHelper.GPIO)
-    pin = sh.argv2pin()
+    pin = 12 # PWM Port 12 sh.argv2pin()
 
     button = GroveButton(pin)
 
