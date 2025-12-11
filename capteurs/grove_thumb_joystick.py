@@ -27,10 +27,18 @@ def main():
 
     while True:
         x, y = sensor.value
-        if x > 900:
-            print('Joystick Pressed')
-        print("X, Y = {0} {1}".format(x, y))
+        if x > 600:
+            print("right")
+        if x < 400:
+            print("left")
+        if y > 600:
+            print("up")
+        if y < 400:
+            print("down")
+        # if x > 900:
+            # print('Joystick Pressed')
+        # print("X, Y = {0} {1}".format(x, y))
         time.sleep(.2)
-
+        
 if __name__ == '__main__':
     main()
