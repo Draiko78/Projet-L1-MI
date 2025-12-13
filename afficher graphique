@@ -1,0 +1,73 @@
+# graphique.py
+import matplotlib.pyplot as plt
+import numpy as np
+from typing import List, Tuple, Union
+
+def creer_graphique(donnees: Union[List[float], List[Tuple[float, float]], np.ndarray], 
+                    titre: str = "Graphique", 
+                    xlabel: str = "Axe X", 
+                    ylabel: str = "Axe Y",
+                    type_graphique: str = "auto") -> None:
+    """
+    Fonction qui crée et affiche un graphique à partir de données
+    
+    Args:
+        donnees: données à afficher. Peut être:
+                - Liste 1D pour un graphique linéaire
+                - Liste de tuples (x, y) pour un nuage de points
+                - Array NumPy
+        titre: titre du graphique
+        xlabel: label de l'axe X
+        ylabel: label de l'axe Y
+        type_graphique: "auto" (détection automatique), "line" ou "scatter"
+    
+    Returns:
+        None: affiche directement le graphique
+    """
+    # Création du graphique avec une taille par défaut
+    plt.figure(figsize=(10, 6))
+    
+    try:
+        if type_graphique == "line" or (type_graphique == "auto" and not isinstance(donnees[0], (list, tuple, np.ndarray))):
+            # Graphique linéaire pour données 1D
+            plt.plot(donnees, marker='o', linestyle='-', color='green', linewidth=2, markersize=6)
+            
+        elif type_graphique == "scatter" or (type_graphique == "auto" and isinstance(donnees[0], (list, tuple, np.ndarray)) and len(donnees[0]) == 2):
+            # Nuage de points pour données 2D
+            x = [point[0] for point in donnees]
+            y = [point[1] for point in donnees]
+            plt.scatter(x, y, color='blue', alpha=0.6, edgecolors='black', s=80)
+            
+        else:
+            raise ValueError("Format de données non supporté")
+        
+        # Personnalisation du graphique
+        plt.title(titre, fontsize=14, fontweight='bold')
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.grid(True, alpha=0.3)
+        
+        # Affichage du graphique
+        plt.tight_layout()
+        plt.show()
+        
+    except Exception as e:
+        print(f"Erreur lors de la création du graphique: {e}")
+        plt.close()
+
+# Exemple d'utilisation
+if __name__ == "__main__":
+    # Exemple 1: Graphique linéaire simple
+    print("Exemple 1: Graphique linéaire")
+    donnees_1d = [10, 15, 13, 17, 20, 18, 22, 25]
+    creer_graphique(donnees_1d, "Évolution des ventes", "Jours", "Ventes (k€)")
+    
+    # Exemple 2: Nuage de points
+    print("\nExemple 2: Nuage de points")
+    donnees_2d = [(1, 2), (2, 4), (3, 1), (4, 5), (5, 3), (6, 7), (7, 4), (8, 6)]
+    creer_graphique(donnees_2d, "Relation X-Y", "Variable X", "Variable Y")
+    
+    # Exemple 3: Avec spécification du type
+    print("\nExemple 3: Graphique personnalisé")
+    temperatures = [22, 24, 19, 21, 25, 27, 23]
+    creer_graphique(temperatures, "Températures hebdomadaires", "Jours", "°C", "line")
