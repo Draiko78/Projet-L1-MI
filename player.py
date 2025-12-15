@@ -17,3 +17,5 @@ class Player:
         self.image_droite = pygame.transform.flip(self.image_gauche, True, False)
         
         self.body = pygame.Rect((920, 960),(40,80))
+
+#
