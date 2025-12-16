@@ -41,6 +41,13 @@ def main():
     print('Detecting temperature...')
     while True:
         print('{} Celsius'.format(sensor.temperature))
+        if sensor.temperature >= 20:
+            print(0)
+        elif sensor.temperature <= 10:
+            print(1)
+        else:
+            print(2)
+        # 3 niveaux
         time.sleep(1)
 
 
