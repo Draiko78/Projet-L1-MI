@@ -4,9 +4,11 @@ from player import Player
 from animals import Animal
 from map_grid import gmap
 from inputPlayer import movement, scream
+from capteurs.lightS import lightSensor
 
 eventSpawnA = pygame.USEREVENT+1
 eventMoveA = pygame.USEREVENT+2
+eventLight = pygame.USEREVENT+3
 
 class Screen:
     def __init__(self):
@@ -17,12 +19,16 @@ class Screen:
         self.player = Player()
         self.animal = None
         self.animal_presence = False
-        self.timerSpawnA = pygame.time.set_timer(eventSpawnA, 2000)
+        self.timerSpawnA = pygame.time.set_timer(eventSpawnA, 20000)
         self.timerMoveA = None
         self.background=pygame.image.load("resized_image.png")
         self.font = pygame.font.Font('Font/pokemon-ds-font.ttf', 72)
         self.text = None
         self.text_rect = None
+        self.timerLight = pygame.time.set_timer(eventLight, 500)
+        self.light = 600
+        self.sky = pygame.Surface((1920, 1080))
+        self.sky.set_alpha(128)
 
     def start(self):
         while self.run:
@@ -31,13 +37,15 @@ class Screen:
             self.screen.blit(self.player.image,dest=self.player.body)
             if self.animal_presence:
                 self.screen.blit(self.animal.sprite,dest=self.animal.body)
+            if self.light < 350:
+                self.screen.blit(self.sky, (0, 0))
             
             if self.animal_presence:
                 if scream(self.player, self.animal) == 'appeuré':
                     self.animal = None
                     self.animal_presence = False
                     self.timerMoveA = None
-                    self.timerSpawnA = pygame.time.set_timer(eventSpawnA, 2000)
+                    self.timerSpawnA = pygame.time.set_timer(eventSpawnA, 20000)
                     self.text = None
                     self.text_rect = None
             
@@ -59,6 +67,8 @@ class Screen:
                         pygame.display.update()
                         sleep(5)
                         self.run = res[1]
+                if event.type == eventLight:
+                    self.light = lightSensor()
                         
             if self.text is not None:
                 self.screen.blit(self.text, self.text_rect)
