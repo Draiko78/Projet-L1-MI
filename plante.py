@@ -16,6 +16,9 @@ def plantation(gmap,playerChar,map_base):
 
     image_grn=pygame.image.load("plante_debut.png")
     image_grn=pygame.transform.scale(image_grn,(40,40))
+    
+    image_sld=pygame.image.load("salade.png")
+    image_sld=pygame.transform.scale(image_sld,(40,40))
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN :
@@ -29,8 +32,12 @@ def plantation(gmap,playerChar,map_base):
                     grn = pygame.Rect((gmap[mx-1][my+1], gmap[mx-1][my+1]),(40,40))
                     screen.blit(image_grn,dest=grn)
                     gmap[mx-1][my+1]=4
+                
+                elif gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==4 and soleil:
+                    screen.blit(map_base,dest=car_voulu,area=car_voulu)
+                    gmap[mx-1][my+1]=2
+            
             if event.key==pygame.K_j and gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==4:
 
-                screen.blit(map_base,dest=car_voulu,area=car_voulu)
-                gmap[mx-1][my+1]=2
-
+                sld=pygame.Rect((gmap[mx-1][my+1],gmap[mx-1][my+1]),(40,40))
+                screen.blit(image_sld,dest=sld)
