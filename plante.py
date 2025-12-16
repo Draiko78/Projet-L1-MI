@@ -23,21 +23,27 @@ def plantation(gmap,playerChar,map_base):
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN :
             if event.key==pygame.K_k:
-                if  gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==2 and soleil:
+                if  gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==2 :
+                    #permet de creuser le trou
                     plt = pygame.Rect((gmap[mx-1][my+1], gmap[mx-1][my+1]),(40,40))
                     screen.blit(image_plt,dest=plt)
                     gmap[mx-1][my+1]=3
 
-                elif gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==3 and soleil:
+                elif gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==3 :
+                    #permet de planter la graine
                     grn = pygame.Rect((gmap[mx-1][my+1], gmap[mx-1][my+1]),(40,40))
                     screen.blit(image_grn,dest=grn)
                     gmap[mx-1][my+1]=4
                 
-                elif gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==4 and soleil:
+                elif gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==4 :
+                #permet de déterrer la plante/graine
                     screen.blit(map_base,dest=car_voulu,area=car_voulu)
                     gmap[mx-1][my+1]=2
             
-            if event.key==pygame.K_j and gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==4:
+            if event.key==pygame.K_j and gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==4 and soleil:
+                #permet d'arroser la plante (la fait pousser que s'il y a du soleil)
+                sld=pygame.Rect((gmap[mx-1][my+1],gmap[mx-1][my+1]),(40,40))
+                screen.blit(image_sld,dest=sld)
 
                 sld=pygame.Rect((gmap[mx-1][my+1],gmap[mx-1][my+1]),(40,40))
                 screen.blit(image_sld,dest=sld)
