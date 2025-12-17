@@ -49,8 +49,6 @@ player_quit = False
 
 def quit_button():
     global player_quit
-    from grove.helper import SlotHelper
-    sh = SlotHelper(SlotHelper.GPIO)
     pin = 16 # D16
 
     button = GroveButton(pin)
