@@ -49,7 +49,6 @@ player_plant = False
 
 def plant_button():
     global player_plant
-    from grove.helper import SlotHelper
     pin = 5 # D5
 
     button = GroveButton(pin)
