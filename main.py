@@ -1,3 +1,5 @@
+import math
+import random
 import pygame
 from screen import Screen
 
