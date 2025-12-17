@@ -1,5 +1,6 @@
 import pygame
 from random import randint
+import capteurs.grove_pwm_buzzer as grove_buzzer
 
 class Animal:
 	def __init__(self, saladMatrix):
@@ -47,6 +48,7 @@ class Animal:
 				return text, True
 			else:
 				text = font.render("Vous avez perdu...", False, (255, 0, 0))
+				grove_buzzer.buzzer()
 				return text, False
 			
 		text = font.render("Un animal essaye de manger vos salades !!!", False, (255, 0, 0))
