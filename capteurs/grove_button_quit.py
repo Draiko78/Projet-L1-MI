@@ -46,19 +46,21 @@ class GroveButton(object):
 
 Grove = GroveButton
 
-def main():
+def quit_button():
     from grove.helper import SlotHelper
     sh = SlotHelper(SlotHelper.GPIO)
     pin = 16 # D16
 
     button = GroveButton(pin)
 
-    def on_press(t):
-        print('Button is pressed')
+    # def on_press(t):
+        # print('Button is pressed')
     def on_release(t):
-        print("Button is released, pressed for {0} seconds".format(round(t,6)))
+        # print("Button is released, pressed for {0} seconds".format(round(t,6)))
+        if t > 5:
+            return True
 
-    button.on_press = on_press
+    # button.on_press = on_press
     button.on_release = on_release
 
     while True:
@@ -66,4 +68,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    quit_button()
