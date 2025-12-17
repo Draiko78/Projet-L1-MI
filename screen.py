@@ -6,6 +6,8 @@ from map_grid import gmap
 from inputPlayer import movement, scream
 from capteurs.lightS import lightSensor
 import capteurs.grove_button_quit as grove_quit
+import math  # AJOUT
+import random  # AJOUT
 
 eventSpawnA = pygame.USEREVENT+1
 eventMoveA = pygame.USEREVENT+2
