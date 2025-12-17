@@ -1,5 +1,7 @@
 import pygame
+import capteurs.grove_button_plant as grove_plant # Pas testé
 
+grove_plant.plant_button()
 
 def plantation(gmap,playerChar,map_base):
 
@@ -22,7 +24,7 @@ def plantation(gmap,playerChar,map_base):
 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN :
-            if event.key==pygame.K_k:
+            if grove_plant.player_plant: # Pas testé
                 if  gmap[mx][my+1] == 0 and gmap[mx-1][my+1]==2 :
                     #permet de creuser le trou
                     plt = pygame.Rect((gmap[mx-1][my+1], gmap[mx-1][my+1]),(40,40))
