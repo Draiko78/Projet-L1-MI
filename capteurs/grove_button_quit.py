@@ -55,15 +55,11 @@ def quit_button():
 
     button = GroveButton(pin)
 
-    def on_release(t):
+    def on_press(t):
         global player_quit
-        if t > 5:
-            player_quit = True
+        player_quit = True
 
-    button.on_release = on_release
-
-    while True:
-        time.sleep(1)
+    button.on_press = on_press
 
 
 if __name__ == '__main__':
