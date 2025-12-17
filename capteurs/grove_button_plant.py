@@ -45,8 +45,10 @@ class GroveButton(object):
 
 
 Grove = GroveButton
+player_plant = False
 
-def main():
+def plant_button():
+    global player_plant
     from grove.helper import SlotHelper
     sh = SlotHelper(SlotHelper.GPIO)
     pin = 5 # D5
@@ -54,9 +56,11 @@ def main():
     button = GroveButton(pin)
 
     def on_press(t):
-        print('Button is pressed')
+        global player_plant
+        player_plant = True
     def on_release(t):
-        print("Button is released, pressed for {0} seconds".format(round(t,6)))
+        global player_plant
+        player_plant = False
 
     button.on_press = on_press
     button.on_release = on_release
@@ -66,4 +70,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    plant_button()
