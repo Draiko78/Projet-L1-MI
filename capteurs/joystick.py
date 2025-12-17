@@ -19,8 +19,6 @@ Grove = GroveThumbJoystick
 
 
 def jsDirection():
-    from grove.helper import SlotHelper
-    sh = SlotHelper(SlotHelper.ADC)
     pin = 0 # A0
 
     sensor = GroveThumbJoystick(int(pin), int(pin + 1))
