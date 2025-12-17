@@ -5,10 +5,13 @@ from animals import Animal
 from map_grid import gmap
 from inputPlayer import movement, scream
 from capteurs.lightS import lightSensor
+import capteurs.grove_button_quit as grove_quit
 
 eventSpawnA = pygame.USEREVENT+1
 eventMoveA = pygame.USEREVENT+2
 eventLight = pygame.USEREVENT+3
+
+grove_quit.quit_button()
 
 class Screen:
     def __init__(self):
@@ -50,7 +53,7 @@ class Screen:
                     self.text_rect = None
             
             for event in pygame.event.get():
-                if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+                if event.type == pygame.QUIT or grove_quit.player_quit:
                     self.run = False
                 if not self.animal_presence and event.type == eventSpawnA:
                     if len(self.sMatrix) != 0:
