@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Horticulteur</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 L'Horticulteur</h1>
+        
+        <div id="buttons">
+            <button id="startBtn" onclick="startGame()">▶️ Lancer le jeu</button>
+            <button id="stopBtn" class="stop" onclick="stopGame()" disabled>⏹️ Arrêter le jeu</button>
+            <button id="deleteBtn" class="delete" onclick="deleteSave()">🗑️ Supprimer la sauvegarde</button>
+        </div>
+        
+        <div id="status" class="status stopped">
+            Etat du jeu: Arrêté
+        </div>
+        
+        <div id="message" style="margin-top: 1rem; color: #666;"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
